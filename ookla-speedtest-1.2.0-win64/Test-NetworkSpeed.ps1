@@ -1,4 +1,6 @@
-﻿#Network Test
+#Output values based on 1Gbps/1Gbps speeds. Adust the Mbps values below to change coloring. 
+
+#Network Test
 Write-Host -Fore Cyan "`n----- TESTING NETWORK SPEED  -----"
     $Result = .\speedtest.exe --accept-license --accept-gdpr -f json | ConvertFrom-Json
 

@@ -2,6 +2,12 @@
   $YourPath = "E:\"
 #Parameters
 
+if($YourPath -match "OneDrive|My Drive")
+{
+	Write-Host -F Red 'ERROR: Path appears to be a cloud drive. You do not want to clear empty folders, as $Folder.Count does not work on OneDrive or other cloud directories.'
+	pause
+	break
+}
 
 Function Send-ToRecycleBin 
 {
@@ -97,11 +103,6 @@ foreach ($Path in $Delete)
 
 
 # Delete empty folders 
-	if($YourPath -match "OneDrive|My Drive")
-    {
-        Write-Host -F Red 'ERROR: Path appears to be a cloud drive. You do not want to clear empty folders, as $Folder.Count does not work on OneDrive or other cloud directories.'
-        break
-    }
 	$TotalCount = 0
     do {
         $EmptyDirs = Get-ChildItem -Recurse -Directory -Force | Where-Object {
